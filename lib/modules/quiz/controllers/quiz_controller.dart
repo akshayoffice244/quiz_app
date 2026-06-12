@@ -162,7 +162,7 @@ Future<String?> getSavedLanguage() async{
        quizList.clear();
      }
      quizList.addAll(quizResponseModel.results!) ;
-     answerHistory.addAll(quizList.map((item)=> item.incorrectAnswers!.length).toList());
+     answerHistory.addAll(quizList.map((item)=> item.incorrectAnswers!.length + 1).toList());
 
 
 

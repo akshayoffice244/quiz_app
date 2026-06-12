@@ -241,7 +241,7 @@ class QuizView extends GetView<QuizController> {
                                                       value: index,
                                                       groupValue: controller
                                                           .selectedValue.value,
-                                                      enabled: !controller.isSubmitted.value,
+                                                      enabled: !controller.isSubmitted.value || controller.answerHistory[controller.currentQuiz.value] != index,
                                                       activeColor:
                                                       Colors.deepPurple,
                                                       shape:
@@ -259,6 +259,8 @@ class QuizView extends GetView<QuizController> {
                                                         ),
                                                       ),
                                                       onChanged: (value) {
+
+                                                        if(controller.answerHistory[controller.currentQuiz.value] == index)
                                                         controller.selectedValue
                                                             .value = value!;
                                                       },
@@ -296,7 +298,10 @@ class QuizView extends GetView<QuizController> {
                                                   ),
                                                 ),
                                                 onPressed: () {
-
+                                                    if(controller.quizList.length - 2 > controller.currentQuiz.value &&  controller.currentQuiz.value > 0){
+                                                      controller.currentQuiz.value-=1;
+                                                      controller.selectedValue.value = controller.answerHistory[controller.currentQuiz.value];
+                                                    }
 
                                                 },
                                               ),
